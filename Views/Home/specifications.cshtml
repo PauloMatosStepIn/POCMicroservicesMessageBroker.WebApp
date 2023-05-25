@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Specifications";
+}
+
+<div class="row">
+    <div class="col-2 "></div>
+    <div class="col-8 ">
+        <h3 class="text-primary" >@ViewData["Title"]</h3>
+
+        <p style="text-align: justify;">This Project intends to demonstrate the implementation of a Message Broker.<br>
+        Is used Identity Server for Authentivation.<br/>
+        On the WebApp Ask for a Coupon, (can be used the user/password: guest/POC-Microservices-2023).<br/>
+        The CouponApi is called with the Coupon Data and uses it to send a message to the Message Broker (Azure Service Bus).<br/>
+        The OrderApi consumes the coupon messages in the subscription of the Message Broker and inserts a new Coupon in the DataBase.<br/>The List of Coupons in the DataBase are exposed by the OrderApi.<br/>
+        The WebApp calls the OrderApi to List the "Valid Coupons".<br/>
+        The Orders database is purged by an Azure Function.</p>
+
+       <h5 class="text-primary" >Components:</h5>
+
+<style>
+    ul, li {list-style-type: none;}
+</style>
+
+<ul>
+    <li>Web App
+        <ul>
+            <li>Home : Generic schema</li>
+            <li>Specifications : Explain the project</li>
+            <li>Coupons : Ask for Coupon</li>
+            <li>Valid Coupons : List the Coupons from the DataBase</li>
+        </ul>
+    </li>
+</ul>
+    </div>
+    <div class="col-2 "></div>
+</div>

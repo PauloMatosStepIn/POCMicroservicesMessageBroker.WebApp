@@ -1,0 +1,35 @@
+﻿@model CouponDto
+
+@if (ViewContext.ModelState.IsValid == false)
+{
+    <div class="alert alert-danger">
+        <strong>Error</strong>
+        <div asp-validation-summary="All" class="danger"></div>
+    </div>
+}
+
+<div >
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h6>choose a coupon and ask for it</h6>
+                </div>
+
+                <div class="card-body">
+                    <form asp-action="AskCoupon">
+                        
+                        <div class="form-group p-2">
+                            <select asp-for="CouponCode" class="form-control" asp-items="@(new SelectList(ViewBag.message))"></select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" name="button" value="ask">Ask for a Coupon</button>
+                        <button type="submit" class="btn btn-secondary" name="button" value="cancel">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
