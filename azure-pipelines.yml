@@ -17,7 +17,7 @@ steps:
    displayName: Build and push to Docker
    inputs:
      containerRegistry: 'DockerHubServiceConnection'
-     repository: 'pocmicroservices-messagebroker-web-docker'
+     repository: 'paulomatos/pocmicroservices-messagebroker-web-docker'
      command: 'buildAndPush'
      Dockerfile: '**/Dockerfile'
 
