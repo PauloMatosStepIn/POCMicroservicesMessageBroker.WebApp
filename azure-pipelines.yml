@@ -19,3 +19,11 @@ steps:
      repository: $(imageName)
      command: build
      Dockerfile: Dockerfile
+
+  # Build container image
+ - task: Docker@2
+   displayName: 'Build container image'
+   inputs:
+     imageName: '$(imageName):$(Build.BuildId)'
+     useDefaultContext: false
+     buildContext: '$(System.DefaultWorkingDirectory)/PublishedWebApp'
