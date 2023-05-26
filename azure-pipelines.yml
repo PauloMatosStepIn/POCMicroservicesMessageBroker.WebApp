@@ -14,15 +14,10 @@ variables:
  
 steps:
  - task: Docker@2
-   displayName: Build an image
-   inputs:
-     repository: $(imageName)
-     command: build
-     Dockerfile: Dockerfile
-  
- - task: Docker@2
+   displayName: Build and push to Docker
    inputs:
      containerRegistry: 'DockerHubServiceConnection'
      repository: 'pocmicroservices-messagebroker-web-docker'
-     command: 'push'
+     command: 'buildAndPush'
+     Dockerfile: '**/Dockerfile'
 
