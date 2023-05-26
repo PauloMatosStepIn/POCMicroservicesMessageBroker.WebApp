@@ -10,6 +10,9 @@ pool: Default
 
 variables:
    imageName: 'POCMicroservices-Messagebroker-Web-docker'
+   location: 'UK South'
+   WebAppName: 'StepIn.Web'
+   webPlanName: 'POCMicroservices'
 
  
 steps:
@@ -21,3 +24,27 @@ steps:
      command: 'buildAndPush'
      Dockerfile: '**/Dockerfile'
 
+ # Create or update Azure App Service
+ - task: AzureResourceGroupDeployment@2
+   displayName: 'Azure Deployment:Create Azure App Service'
+   inputs:
+        azureSubscription: 'StepIn Azure subscription'
+        resourceGroupName: 'POC_microservicos_2305'
+        location: "$(location)"
+        csmFile: '$(Pipeline.Workspace)/**/container-webapp-template.json'
+        overrideParameters: '-webAppName $(webAppName) -hostingPlanName $(webPlanName) -appInsightsLocation "$(location)" -sku "B1 Basic"  -registrySku basic -imageName $(imageName):$(Build.BuildId)'
+
+ # Deploy App Service
+ - task: AzureRmWebAppDeployment@3
+   displayName: 'Deploy Azure App Service'
+   inputs:
+        azureSubscription: 'StepIn Azure subscription'
+        appType: applinux
+        WebAppName: $(webAppName)
+        DockerNamespace: 'paulomatos'
+        DockerRepository: 'paulomatos/pocmicroservices-messagebroker-web-docker'
+        DockerImageTag: '$(Build.BuildId)'
+        WebAppUri: webAppUrl
+        TakeAppOfflineFlag: true
+        UseWebDeploy: true
+        RenameFilesFlag: true
