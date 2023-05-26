@@ -21,7 +21,7 @@ steps:
      Dockerfile: Dockerfile
 
   # Build container image
- - task: Docker@2
+ - task: Docker@1
    displayName: 'Build container image'
    inputs:
      imageName: '$(imageName):$(Build.BuildId)'
