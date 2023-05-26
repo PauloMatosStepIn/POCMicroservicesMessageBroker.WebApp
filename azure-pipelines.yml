@@ -27,3 +27,4 @@ steps:
      imageName: '$(imageName):$(Build.BuildId)'
      useDefaultContext: false
      buildContext: '$(System.DefaultWorkingDirectory)/PublishedWebApp'
+
