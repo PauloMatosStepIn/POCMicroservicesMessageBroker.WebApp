@@ -28,7 +28,7 @@ steps:
  - task: AzureResourceGroupDeployment@2
    displayName: 'Azure Deployment:Create Azure App Service'
    inputs:
-        azureSubscription: 'StepIn Azure subscription'
+        azureSubscription: '$(AZURESUBSCRIPTION)'
         resourceGroupName: 'POC_microservicos_2305'
         location: "$(location)"
         csmFile: '$(Pipeline.Workspace)/**/container-webapp-template.json'
@@ -38,7 +38,7 @@ steps:
  - task: AzureRmWebAppDeployment@3
    displayName: 'Deploy Azure App Service'
    inputs:
-        azureSubscription: 'StepIn Azure subscription'
+        azureSubscription: '$(AZURESUBSCRIPTION)'
         appType: applinux
         WebAppName: $(webAppName)
         DockerNamespace: 'paulomatos'
