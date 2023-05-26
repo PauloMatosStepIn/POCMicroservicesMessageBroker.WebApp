@@ -28,3 +28,9 @@ steps:
      useDefaultContext: false
      buildContext: '$(System.DefaultWorkingDirectory)/PublishedWebApp'
 
+ - task: Docker@2
+   inputs:
+     containerRegistry: 'DockerHubServiceConnection'
+     repository: 'pocmicroservices-messagebroker-web-docker'
+     command: 'push'
+
